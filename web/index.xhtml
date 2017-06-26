@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Pizzaria BellaPizza</title>
+    </h:head>
+    <h:body>
+        <p:tabView>
+                <p:tab title="Login">
+                    <h:panelGrid columns="2" cellpadding="10">
+                        <h:form id="y">
+                            <h:message id="msg_xxx" for="xxx" /><br/> 
+                            <p:messages id="messages" showDetail="true" autoUpdate="true" />
+                            <h:outputText value="Login"/>
+                            <p:inputText id="login" value="#{funcionario.funcionario.login}" required="true" />
+                            <h:panelGrid columns="2" id="matchGrid" cellpadding="5">                   
+                                <h:outputLabel for="pwd1" value="Senha:" />
+                                <p:password  id="pwd1" value="#{funcionario.funcionario.senha}" label="Senha" required="true" />
+                            </h:panelGrid>
+                            <p:commandButton value="Submit" action="#{funcionario.logar()}" ajax="false" />
+                            <p:spacer />
+                        </h:form>
+                    </h:panelGrid>                    
+                </p:tab>
+
+                <p:tab title="Cadastro de funcionario">                    
+                        <h:form>
+                            <p:messages id="messages_cad" showDetail="true" autoUpdate="true" />
+                            <h:outputText value="Nome"/>
+                            <p:inputText id="nome" value="#{funcionario.funcionario.nome}" required="true" /><br /><br />
+                            <h:outputText value="Login"/>
+                            <p:inputText id="login" value="#{funcionario.funcionario.login}" required="true" />
+
+                            <h:panelGrid columns="2" id="matchGrid" cellpadding="5">                   
+                                <h:outputLabel for="pwd1" value="Senha:" />
+                                <p:password id="pwd1" value="#{funcionario.funcionario.senha}" match="pwd2" label="Senha" required="true" />
+
+                                <h:outputLabel for="pwd2" value="Confirme a senha:" />
+                                <p:password id="pwd2" value="#{funcionario.funcionario.senha}" label="Csenha" required="true" />
+                            </h:panelGrid>
+
+                            <!-- funcao -->
+                            <h:outputText value="Função"/>
+                            <p:selectOneButton value="#{funcionario.funcionario.funcao}" >
+
+                                <f:selectItem itemLabel="Garçom" itemValue="1" />
+                                <f:selectItem itemLabel="Cozinha" itemValue="2" />
+                                <f:selectItem itemLabel="Central Administrativa" itemValue="3" /> 
+                                <f:convertNumber />
+                            </p:selectOneButton>
+
+
+                            <p:commandButton value="Submit" update="matchGrid" action="#{funcionario.cadastrar()}" ajax="false" />
+                            <p:spacer />
+                        </h:form>
+                </p:tab>
+            </p:tabView>
+                <br />
+        <!--<h:link outcome="welcomePrimefaces" value="Página de boas-vindas do Primefaces" />-->
+    </h:body>
+</html>

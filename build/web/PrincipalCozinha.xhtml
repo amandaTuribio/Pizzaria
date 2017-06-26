@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">      
+    <head>
+        <title>Area da Cozinha</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <h:form>
+            <p:dialog header="Pedidos Abertos" widgetVar="pedidos" modal="true" showEffect="blind" hideEffect="explode" resizable="false">
+            <p:outputPanel id="detpedido" style="text-align:center;">
+                
+                <p:panelGrid  columns="2" rendered="#{not empty pedido.setPedidoselecionado}" columnClasses="label,value">
+                    
+                    <h:outputText value="Id:" />
+                    <h:outputText value="#{pedido.id}" />
+
+                </p:panelGrid>
+                
+            </p:outputPanel>
+        </p:dialog>
+     </h:form>
+
+    </body>
+</html>
