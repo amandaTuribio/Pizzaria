@@ -16,5 +16,9 @@
     
     
     <mapping class="Model.Funcionario"></mapping>
+    <mapping class="Model.Pedido"></mapping>
+    <mapping class="Model.Cliente"></mapping>
+    <mapping class="Model.ItemPedido"></mapping>
+    <mapping class="Model.Produto"></mapping>
   </session-factory>
 </hibernate-configuration>

@@ -20,9 +20,20 @@ public class Produto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-
-    private Integer descricao;
+    private Double preco;
+    private String descricao;
     private Integer qtdESt;
+
+    public Double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(Double preco) {
+        this.preco = preco;
+    }
+    
+    
+    
 
     public Produto() {
 
@@ -36,11 +47,11 @@ public class Produto implements Serializable {
         this.id = id;
     }
 
-    public Integer getDescricao() {
+    public String getDescricao() {
         return descricao;
     }
 
-    public void setDescricao(Integer descricao) {
+    public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
 
@@ -51,7 +62,6 @@ public class Produto implements Serializable {
     public void setQtdESt(Integer qtdESt) {
         this.qtdESt = qtdESt;
     }
-    
-    
+       
     
 }

@@ -1,33 +1,47 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">      
-    <head>
-        <title>Area da Cozinha</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <h:form>
-            <p:dialog header="Pedidos Abertos" widgetVar="pedidos" modal="true" showEffect="blind" hideEffect="explode" resizable="false">
-            <p:outputPanel id="detpedido" style="text-align:center;">
-                
-                <p:panelGrid  columns="2" rendered="#{not empty pedido.setPedidoselecionado}" columnClasses="label,value">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Pizzaria BellaPizza</title>
+    </h:head>
+    <h:body>
+        <p:tabView style="margin-left:27%; width:45%; margin-top: 10%" >
+            <p:tab title="Listar Pedidos">
+                    <h:dataTable value="#{pedido.lista}" var="item">
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Pedidos Abertos"/>
+                                    </f:facet>
+                                    <h:outputText rendered="#{(item.qtdESt > 0)}" value="#{item.descricao}"/>                       
+                                </h:column>                   
+                     </h:dataTable>
+            </p:tab>
+
+            <p:tab title="Cadastrar Produto">                    
+                 <h:form id="y">
+                    <p:messages id="x" showDetail="true" autoUpdate="true" /><br />
+                    <h:outputText value="Descricao: "/>
+                    <p:inputText id="nome" value="#{produto.produto.descricao}" required="true" /><br /><br />
+                    <h:outputText value="Valor: "/>
+                    <p:inputText id="valor" value="#{produto.produto.preco}" required="true" /><br /><br />
+                    <h:outputText value="Quantidade em estoque:"/>
+                    <p:inputText id="qtd" value="#{produto.produto.qtdESt}" required="true" /><br /><br />
                     
-                    <h:outputText value="Id:" />
-                    <h:outputText value="#{pedido.id}" />
-
-                </p:panelGrid>
-                
-            </p:outputPanel>
-        </p:dialog>
-     </h:form>
-
-    </body>
+                    
+                    <p:commandButton value="Cadastrar" update="matchGrid" action="#{produto.cadastrar()}" ajax="false" />
+                    <p:spacer />
+                </h:form>
+            </p:tab>
+            <p:tab title="Logout" >                    
+                <h:form>
+                    <p:commandButton value="Sair do sistema" action="#{funcionario.sair()}" ajax="false" />
+                    <p:spacer />
+                </h:form>
+            </p:tab>
+        </p:tabView>
+        <br />        
+    </h:body>
 </html>

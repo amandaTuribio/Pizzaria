@@ -33,6 +33,9 @@ public class Pedido implements Serializable {
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date date;
     private Integer status;
+    private Integer local;
+    
+    private Cliente cliente;
     
     @OneToMany(fetch = FetchType.EAGER)
     private Set<ItemPedido> itempedido = new HashSet<ItemPedido>();
@@ -79,30 +82,31 @@ public class Pedido implements Serializable {
     public void setItempedido(Set<ItemPedido> itempedido) {
         this.itempedido = itempedido;
     }
-    
-//    
-//    public boolean isItempedido(String id){
-//        for(ItemPedido p : itempedido){
-//            if(p.getId().equals(Integer.parseInt(id))){
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-//    
-//    public void setItempedido(ItemPedido c) {
-//        itempedido.add(c);
-//    }
-//    
-//    public void setItempedidoNull(){
-//        itempedido = null;
-//    }
-//    
-//    public void rmItempedido(ItemPedido c) {
-//        itempedido.remove(c);
-//    }
-    
-    
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Integer getLocal() {
+        return local;
+    }
+
+    public void setLocal(Integer local) {
+        this.local = local;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+        
 
     
 }

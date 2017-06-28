@@ -1,4 +1,4 @@
-package model.bo.conta.filter;
+package Filtro;
 
 import Model.Funcionario;
 import java.io.IOException;
@@ -33,6 +33,8 @@ public class Login implements Filter {
             String uri = httpRequest.getRequestURI();
             String redirect = null;
             
+           HttpServletResponse resp = (HttpServletResponse) response;
+        
             if (session == null || session.getAttribute("funcionarioLogado") == null) {
 		if (!(uri.contains("/index.xhtml") || uri.contains("javax.faces.resource"))) {
                     redirect = "index.xhtml";
@@ -40,13 +42,12 @@ public class Login implements Filter {
             }else{
                 Funcionario f = (Funcionario) session.getAttribute("funcionarioLogado");
                 if (uri.contains("Principal.xhtml")) {
-                    
-                    if(f.getFuncao()== 1){
-                        redirect = "PrincipalGarcom.xhtml";
-                    }else if(f.getFuncao()== 2){
-                        redirect = "PincipalCozinha.xhtml";
+                    if(f.getFuncao()== 2){
+                        resp.sendRedirect(httpRequest.getContextPath() + "/PrincipalCozinha.xhtml");
+                    }else if(f.getFuncao()== 1){
+                        resp.sendRedirect(httpRequest.getContextPath() + "/PrincipalGarcom.xhtml");                    
                     }else{
-                        redirect = "PrincipalCentral.xhtml";
+                       resp.sendRedirect(httpRequest.getContextPath() + "/PrincipalCentral.xhtml");
                     } 
 		}
                 

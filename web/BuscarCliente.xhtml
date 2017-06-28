@@ -1,0 +1,12 @@
+<h:panelGrid xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html" columns="6"
+             xmlns:p="http://primefaces.org/ui">
+    <h:form id="p">
+        <h:message id="msg_xxx" for="xxx" /><br/> 
+        <p:messages id="messages" showDetail="true" autoUpdate="true" />
+        <h:outputText value="Telefone: "/>
+         <p:inputMask id="telefone" value="#{cliente.cliente.telefone}" required="true"  mask="(99)99999-9999"/><br /><br />
+        <p:commandButton value="Buscar" action="#{cliente.buscar()}" ajax="false" />
+        <p:spacer />
+    </h:form>    
+</h:panelGrid>

@@ -8,18 +8,18 @@
         <title>Pizzaria BellaPizza</title>
     </h:head>
     <h:body>
-        <p:tabView>
+        <p:tabView style="margin-left:27%; width:45%; margin-top: 10%" >
                 <p:tab title="Login">
-                    <h:panelGrid columns="2" cellpadding="10">
+                    <h:panelGrid columns="4" cellpadding="10">
                         <h:form id="y">
                             <h:message id="msg_xxx" for="xxx" /><br/> 
                             <p:messages id="messages" showDetail="true" autoUpdate="true" />
-                            <h:outputText value="Login"/>
-                            <p:inputText id="login" value="#{funcionario.funcionario.login}" required="true" />
-                            <h:panelGrid columns="2" id="matchGrid" cellpadding="5">                   
-                                <h:outputLabel for="pwd1" value="Senha:" />
-                                <p:password  id="pwd1" value="#{funcionario.funcionario.senha}" label="Senha" required="true" />
-                            </h:panelGrid>
+                            <h:outputText value="Login: "/>
+                            <p:inputText id="login" value="#{funcionario.funcionario.login}" required="true" /><br/><br/>
+                                              
+                            <h:outputLabel for="pwd1" value="Senha:"/>
+                            <p:password  id="pwd1" value="#{funcionario.funcionario.senha}" label="Senha" required="true" /><br/><br/>
+                            
                             <p:commandButton value="Submit" action="#{funcionario.logar()}" ajax="false" />
                             <p:spacer />
                         </h:form>
@@ -29,21 +29,21 @@
                 <p:tab title="Cadastro de funcionario">                    
                         <h:form>
                             <p:messages id="messages_cad" showDetail="true" autoUpdate="true" />
-                            <h:outputText value="Nome"/>
+                            <h:outputText value="Nome: "/>
                             <p:inputText id="nome" value="#{funcionario.funcionario.nome}" required="true" /><br /><br />
-                            <h:outputText value="Login"/>
-                            <p:inputText id="login" value="#{funcionario.funcionario.login}" required="true" />
+                            <h:outputText value="Login: "/>
+                            <p:inputText id="login" value="#{funcionario.funcionario.login}" required="true" /><br /><br />
 
-                            <h:panelGrid columns="2" id="matchGrid" cellpadding="5">                   
-                                <h:outputLabel for="pwd1" value="Senha:" />
-                                <p:password id="pwd1" value="#{funcionario.funcionario.senha}" match="pwd2" label="Senha" required="true" />
+                            <!--<h:panelGrid columns="2" id="matchGrid" cellpadding="5">-->                   
+                            <h:outputLabel for="pwd1" value="Senha: " />
+                            <p:password id="pwd1" value="#{funcionario.funcionario.senha}" match="pwd2" label="Senha" required="true" /><br /><br />
 
-                                <h:outputLabel for="pwd2" value="Confirme a senha:" />
-                                <p:password id="pwd2" value="#{funcionario.funcionario.senha}" label="Csenha" required="true" />
-                            </h:panelGrid>
+                            <h:outputLabel for="pwd2" value="Confirme a senha: " />
+                            <p:password id="pwd2" value="#{funcionario.funcionario.senha}" label="Csenha" required="true" /><br /><br />
+<!--                            </h:panelGrid>-->
 
                             <!-- funcao -->
-                            <h:outputText value="Função"/>
+                            <h:outputText value="Função: "/>
                             <p:selectOneButton value="#{funcionario.funcionario.funcao}" >
 
                                 <f:selectItem itemLabel="Garçom" itemValue="1" />
@@ -52,13 +52,13 @@
                                 <f:convertNumber />
                             </p:selectOneButton>
 
-
+<br /><br />
                             <p:commandButton value="Submit" update="matchGrid" action="#{funcionario.cadastrar()}" ajax="false" />
                             <p:spacer />
                         </h:form>
                 </p:tab>
             </p:tabView>
                 <br />
-        <!--<h:link outcome="welcomePrimefaces" value="Página de boas-vindas do Primefaces" />-->
+        
     </h:body>
 </html>

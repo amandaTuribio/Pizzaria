@@ -5,6 +5,7 @@
  */
 package Dao;
 
+import Model.Produto;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -27,5 +28,9 @@ public class DAO {
 
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory(serviceRegistry);
         return sessionFactory.openSession();        
+    }
+
+    public Object getDs(String value, Class<Produto> aClass) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

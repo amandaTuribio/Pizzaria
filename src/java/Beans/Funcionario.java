@@ -8,6 +8,8 @@ package Beans;
 
 import Dao.FuncionarioDAO;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
@@ -30,16 +32,10 @@ public class Funcionario {
         this.funcionario = funcionario;
     }
     
-    public void sair() {
-        
-    }
-    
     public void cadastrar() throws IOException {
         FuncionarioDAO dao = new FuncionarioDAO();
         dao.salvar(funcionario);
         
-        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();           
-        context.redirect("index.xhtml");
     }
     
     public void logar() throws IOException {
@@ -57,6 +53,13 @@ public class Funcionario {
             FacesContext.getCurrentInstance().addMessage("y:xxx", new FacesMessage("Login ou senha incorretos!"));
         }
         
+    }
+    public void sair() throws IOException {
+        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+        HttpSession session = (HttpSession) context.getSession(false);
+        session.removeAttribute("funcionarioLogado");
+
+            context.redirect("index.xhtml");
     }
     
 }
