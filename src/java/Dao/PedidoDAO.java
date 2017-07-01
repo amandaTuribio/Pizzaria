@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  *
@@ -27,5 +28,17 @@ public class PedidoDAO {
         
         daoSession.close();
         return lista;
+    }
+
+    public void salvar(Pedido pedido) {
+         Session daoSession = DAO.getSession();
+        Transaction transaction = daoSession.getTransaction();           
+        
+        transaction.begin();
+        if(pedido == null) return;
+        daoSession.save(pedido);
+        transaction.commit();
+        daoSession.close();
+
     }
 }

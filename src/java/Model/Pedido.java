@@ -34,9 +34,7 @@ public class Pedido implements Serializable {
     private Date date;
     private Integer status;
     private Integer local;
-    
-    private Cliente cliente;
-    
+    private Cliente cliente;   
     @OneToMany(fetch = FetchType.EAGER)
     private Set<ItemPedido> itempedido = new HashSet<ItemPedido>();
 
@@ -79,8 +77,8 @@ public class Pedido implements Serializable {
         return itempedido;
     }
 
-    public void setItempedido(Set<ItemPedido> itempedido) {
-        this.itempedido = itempedido;
+    public void setItempedido(ItemPedido item) {
+        this.itempedido.add(item);
     }
 
     public Integer getStatus() {
@@ -106,7 +104,12 @@ public class Pedido implements Serializable {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-        
-
-    
+//    
+//    public void adicionarItem(ItemPedido item){
+//        
+//        this.itempedido.add(item)
+//        
+//        
+//    }
+       
 }

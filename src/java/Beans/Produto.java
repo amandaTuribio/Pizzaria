@@ -20,7 +20,7 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 public class Produto {
     private Model.Produto produto = new Model.Produto();
-    private ArrayList<Model.Produto> lista = new ArrayList<>();
+    private List<Model.Produto> lista;
 
     public Produto() {
     }
@@ -40,7 +40,7 @@ public class Produto {
 
     }
     
-    public ArrayList<Model.Produto> getLista() {
+    public List<Model.Produto> getLista() {
         procurar();
         return lista;
     }
@@ -52,11 +52,12 @@ public class Produto {
     public void procurar() {
         ProdutoDAO dao = new ProdutoDAO();
 
-        lista = (ArrayList<Model.Produto>) dao.lista();
+        lista = dao.lista();
     }
     
     public String toString() {  
         return String.valueOf(produto.getDescricao());  
-    }  
+    }   
+    
     
 }

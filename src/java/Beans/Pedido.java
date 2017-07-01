@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 
@@ -49,6 +50,14 @@ public class Pedido {
         PedidoDAO dao = new PedidoDAO();
 
         lista = (ArrayList<Model.Pedido>) dao.lista();
+    }
+    
+    public void cadastrar() throws IOException {
+        PedidoDAO dao = new PedidoDAO();
+        dao.salvar(pedido);
+        
+        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();           
+        FacesContext.getCurrentInstance().addMessage("o:xxx", new FacesMessage("Pedido cadastrado!"));
     }
     
 }

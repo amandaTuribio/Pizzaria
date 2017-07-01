@@ -12,34 +12,16 @@
         <p:tabView style="margin-left:27%; width:45%; margin-top: 10%" >
                 <p:tab title="Registrar pedido">
                     <h:panelGrid columns="4" cellpadding="10">
-                       <h:form>
+                        <h:form id="o">
+                           <h:message id="msg_xxx" for="xxx" /><br/> 
                             <p:messages id="messages_cad" showDetail="true" autoUpdate="true" />
                             <h:outputText value="Mesa:"/>
                             <p:inputText id="nome" value="#{pedido.pedido.mesa}" required="true" /><br /><br />
-
-                         
-                          <h:dataTable value="#{produto.lista}" var="item">
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Produdos Disponiveis"/>
-                                    </f:facet>
-                                    <h:outputText rendered="#{(item.qtdESt > 0)}" value="#{item.descricao}"/>                       
-                                </h:column>                   
-                            </h:dataTable>
                             
-                            <p:outputLabel for="advanced" value="Advanced:" />
-        <p:selectManyMenu id="advanced" value="#{selectManyView.selectedThemes}" converter="themeConverter"
-                          var="t" filter="true" filterMatchMode="contains" showCheckbox="true">
-            <f:selectItems value="#{selectManyView.themes}" var="theme" itemLabel="#{theme.displayName}" itemValue="#{theme}" />
- 
-            <p:column>
-                <h:outputText styleClass="ui-theme ui-theme-#{t.name}" />
-            </p:column>
- 
-            <p:column>
-                <h:outputText value="#{t.displayName}" />
-            </p:column>
-        </p:selectManyMenu>
+                            <p:selectManyCheckbox id="grid" value="#{pedido.pedido.itempedido}" layout="grid" columns="3">
+                                <f:selectItems value="#{produto.lista}" var="item" rendered="#{(item.qtdESt > 0)}"  itemLabel="#{item.descricao}" itemValue="#{item}" />
+                            </p:selectManyCheckbox>
+                
                             <br/>
                             <h:outputText value="Status"/>
                             <h:selectOneRadio id="admin" value="#{pedido.pedido.status}">
@@ -49,7 +31,7 @@
                             </h:selectOneRadio>
                             
                             
-                            <p:commandButton value="Submit" update="matchGrid" action="#{funcionario.cadastrar()}" ajax="false" />
+                            <p:commandButton value="Cadastrar" update="matchGrid" action="#{pedido.cadastrar()}" ajax="false" />
                             <p:spacer />
                         </h:form>
                     </h:panelGrid>                    
